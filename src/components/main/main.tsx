@@ -76,7 +76,8 @@ export function Main({ApiUrl}: Props){
                     </div>
                     <div className="w-full">
                         <div className="w-full mb-5">
-                            <img src={'https://image.tmdb.org/t/p/original' + modalData?.backdrop_path} alt="" className="rounded-md"/>
+                            <img src={'https://image.tmdb.org/t/p/original' + modalData?.backdrop_path} 
+                                className="rounded-md border-2 border-[#f5690c]"/>
                         </div>
                         <span className="text-white font-bold">{modalData?.title}</span>
                         <div className="flex justify-between">
