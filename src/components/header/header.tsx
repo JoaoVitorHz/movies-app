@@ -39,15 +39,12 @@ export function Header({Clicked}:props){
                         Maiores Notas
                     </span>
                 </div>
-                <div className="flex gap-4 text-xl text-[#f5690c]">
+{/*                 <div className="flex gap-4 text-xl text-[#f5690c]">
                     <a href={gitHubUrl} target='_blank'><AiFillGithub /></a>
                     <a href={linkedinUrl} target='_blank'><FaLinkedin /></a>
                     <a href='/resume.pdf' download="Curriculo João Vitor" target='_blank'><BsFillFileEarmarkArrowDownFill /></a>
                     <a href={porfolioUrl} target='_blank'><HiDesktopComputer /></a>
-          
-               
-                  
-                </div>
+                </div> */}
             </div>
         </header>   
     )
