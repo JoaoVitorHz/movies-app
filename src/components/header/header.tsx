@@ -4,12 +4,17 @@ import { AiFillGithub } from 'react-icons/ai';
 import { FaLinkedin } from 'react-icons/fa';
 import { BsFillFileEarmarkArrowDownFill } from 'react-icons/bs';
 import { HiDesktopComputer } from 'react-icons/hi';
+import { useContext } from 'react';
+import { MovieContext } from '@/context/movieContext';
 
-type props = {
-    Clicked: (ApiUrl: string) => void;
-}
+export function Header(){
 
-export function Header({Clicked}:props){
+    const apiMovieUrlCtx = useContext(MovieContext)
+
+    function HandleChangeApiUrl(apiUrl: string){
+        apiMovieUrlCtx?.setMovie(apiUrl)
+    }
+
     const linkedinUrl = "https://www.linkedin.com/in/jo%C3%A3o-vitor-araujo-96a78522b/";
     const gitHubUrl = "https://github.com/JoaoVitorHz";
     const porfolioUrl = "https://statuesque-crepe-cd6310.netlify.app/";
@@ -23,18 +28,18 @@ export function Header({Clicked}:props){
                 <div className="flex gap-5">
                     <span 
                         className='text-white hover:text-[#f5690c] cursor-pointer'
-                        onClick={() => Clicked("movie/now_playing")}
+                        onClick={() => HandleChangeApiUrl("movie/now_playing")}
                     >
                         Em Estreia
                     </span>
                     <span
                         className='text-white hover:text-[#f5690c] cursor-pointer'
-                        onClick={() => Clicked("movie/popular")}
+                        onClick={() => HandleChangeApiUrl("movie/popular")}
                         >Mais Populares
                     </span>
                     <span 
                         className='text-white hover:text-[#f5690c] cursor-pointer'
-                        onClick={() => Clicked("movie/top_rated")}
+                        onClick={() => HandleChangeApiUrl("movie/top_rated")}
                     >
                         Maiores Notas
                     </span>

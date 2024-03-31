@@ -1,5 +1,6 @@
 'use client'
-import { useEffect, useState } from "react";
+import { MovieContext } from "@/context/movieContext";
+import { useContext, useEffect, useState } from "react";
 import { LuCalendarCheck } from 'react-icons/lu';
 import { MdOutlineClose } from 'react-icons/md';
 import { RiFileList3Line } from 'react-icons/ri';
@@ -12,15 +13,12 @@ type MoviesType = {
     overview: string;
 }
 
-type Props = {
-    ApiUrl: string;
-}
-
-export function Main({ApiUrl}: Props){
+export function Main(){
+    const movieApiUrlctx = useContext(MovieContext)
     const [movie, setMovie] = useState<MoviesType[]>([]);
 
     async function GetData(){
-        const response = await fetch('https://api.themoviedb.org/3/'+ ApiUrl +'?api_key=8cdeb4dea31d00d9f79772db9c9fa4a2&language=pt-br&page=1')
+        const response = await fetch('https://api.themoviedb.org/3/'+ movieApiUrlctx?.apiUrl +'?api_key=8cdeb4dea31d00d9f79772db9c9fa4a2&language=pt-br&page=1')
         const json = await response.json();
         setMovie(json.results)
     }
@@ -31,7 +29,7 @@ export function Main({ApiUrl}: Props){
 
     useEffect(() => {
         GetData();
-    }, [ApiUrl])
+    }, [movieApiUrlctx?.apiUrl])
 
     const [show, setShow] = useState(false);
     const [modalData, setModalData] = useState<MoviesType>();
