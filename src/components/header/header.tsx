@@ -1,23 +1,19 @@
 'use client'
 
-import { AiFillGithub } from 'react-icons/ai';
-import { FaLinkedin } from 'react-icons/fa';
-import { BsFillFileEarmarkArrowDownFill } from 'react-icons/bs';
-import { HiDesktopComputer } from 'react-icons/hi';
 import { useContext } from 'react';
 import { MovieContext } from '@/context/movieContext';
 
-export function Header(){
+import { AiFillGithub } from 'react-icons/ai';
+import { FaLinkedin } from 'react-icons/fa';
+import { HiDesktopComputer } from 'react-icons/hi';
+import { gitHubUrl, linkedinUrl, porfolioUrl } from '@/utils/socialMedia';
 
+export function Header(){
     const apiMovieUrlCtx = useContext(MovieContext)
 
     function HandleChangeApiUrl(apiUrl: string){
         apiMovieUrlCtx?.setMovie(apiUrl)
     }
-
-    const linkedinUrl = "https://www.linkedin.com/in/jo%C3%A3o-vitor-araujo-96a78522b/";
-    const gitHubUrl = "https://github.com/JoaoVitorHz";
-    const porfolioUrl = "https://statuesque-crepe-cd6310.netlify.app/";
 
     return(
         <header className="w-screen bg-[#1c1c1c] h-16 flex justify-center">
@@ -44,12 +40,12 @@ export function Header(){
                         Maiores Notas
                     </span>
                 </div>
-{/*                 <div className="flex gap-4 text-xl text-[#f5690c]">
+
+                <div className="flex gap-4 text-xl text-[#f5690c]">
                     <a href={gitHubUrl} target='_blank'><AiFillGithub /></a>
                     <a href={linkedinUrl} target='_blank'><FaLinkedin /></a>
-                    <a href='/resume.pdf' download="Curriculo João Vitor" target='_blank'><BsFillFileEarmarkArrowDownFill /></a>
                     <a href={porfolioUrl} target='_blank'><HiDesktopComputer /></a>
-                </div> */}
+                </div>
             </div>
         </header>   
     )

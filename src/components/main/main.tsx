@@ -1,24 +1,23 @@
 'use client'
-import { MovieContext } from "@/context/movieContext";
-import { useContext, useEffect, useState } from "react";
-import { LuCalendarCheck } from 'react-icons/lu';
+
 import { MdOutlineClose } from 'react-icons/md';
+import { LuCalendarCheck } from 'react-icons/lu';
 import { RiFileList3Line } from 'react-icons/ri';
 
-type MoviesType = {
-    backdrop_path: string;
-    title: string;
-    release_date: string;
-    vote_average: number;
-    overview: string;
-}
+import { MoviesType } from "@/types/MovieTypes";
+import { MovieContext } from "@/context/movieContext";
+import { useContext, useEffect, useState } from "react";
+import { API_KEY, BASE_URL } from '@/utils/api';
 
 export function Main(){
     const movieApiUrlctx = useContext(MovieContext)
     const [movie, setMovie] = useState<MoviesType[]>([]);
+    
+    const [show, setShow] = useState(false);
+    const [modalData, setModalData] = useState<MoviesType>();
 
     async function GetData(){
-        const response = await fetch('https://api.themoviedb.org/3/'+ movieApiUrlctx?.apiUrl +'?api_key=8cdeb4dea31d00d9f79772db9c9fa4a2&language=pt-br&page=1')
+        const response = await fetch(BASE_URL + movieApiUrlctx?.apiUrl + API_KEY)
         const json = await response.json();
         setMovie(json.results)
     }
@@ -30,9 +29,6 @@ export function Main(){
     useEffect(() => {
         GetData();
     }, [movieApiUrlctx?.apiUrl])
-
-    const [show, setShow] = useState(false);
-    const [modalData, setModalData] = useState<MoviesType>();
 
     function ShowModal(item: MoviesType){
         setShow(!show)
